@@ -3,7 +3,7 @@
 ;FIBONACCI SERIES
 
 THUMB
-	 AREA     fibonacci, CODE, READONLY
+	 AREA     first, CODE, READONLY
      EXPORT __main
      ENTRY 
 __main  FUNCTION	
