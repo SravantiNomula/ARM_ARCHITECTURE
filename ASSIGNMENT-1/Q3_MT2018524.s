@@ -1,3 +1,9 @@
+;ARM__Assignment-1
+;SRAVANTI NOMULA : MT2018524
+;EVEN or ODD
+
+THUMB
+
 AREA     first, CODE, READONLY
      export __main	 
 	 ENTRY 
