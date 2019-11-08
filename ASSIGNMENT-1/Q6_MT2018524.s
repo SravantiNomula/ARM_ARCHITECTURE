@@ -1,6 +1,6 @@
 ;ARM ARCHITECTURE--Assignment-1 
 ; Sravanti Nomula-MT2018524
-
+;GCD
      AREA     first, CODE, READONLY
      EXPORT __main
 	 ENTRY 
