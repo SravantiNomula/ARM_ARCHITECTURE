@@ -12,7 +12,7 @@ loop	CMP r0, r1		; r0 == r1?
 		BEQ stop		; YES stop
 		
 		CMP r0, r1		; r0 > r1
-		ITE GT			; Works without ITE aswell
+		ITE GT			
 		SUBGT r0, r1	; YES r0 -= r1
 		SUBLE r1, r0	; NO r1 -= r0
 		
