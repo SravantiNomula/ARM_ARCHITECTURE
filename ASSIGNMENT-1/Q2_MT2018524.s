@@ -3,27 +3,30 @@
 ;SRAVANTI NOMULA : MT2018524
 ;largest number of 3  numbers
 
-   THUMB
+    
+ ;output:R1 finally reflected here
+ 	 THUMB
 	 AREA     first, CODE, READONLY
-     EXPORT __main
-     ENTRY 
-__main  FUNCTION	
-; IGNORE THIS PART 	
-	    		 		
-		MOV  r0, #1		;input A
-		MOV  r1, #2 	;input B
-		MOV  r2, #3		;input C	
+     	 EXPORT __main
+     	 ENTRY 
+__main  FUNCTION		 		
+		MOV  r1, #5 
+		MOV  r2, #4 
+		MOV  r3, #8 
 		
-		CMP r0, r1		; r0 > r1?
-		ITE GE			; 
-		MOVGE r3, r0	; YES r3 = r0
-		MOVLT r3, r1	; NO r3 = r1
 		
-		CMP r2, r3		; r2 > r3
-		IT GE			; 
-		MOVGE r3, r2	; YES r3 = r2
-
-stop B stop 			; stop program
+		CMP r1, r2	
+		BGE hey	
+		MOV r1,r2
+hey		CMP r1,r3
+		BGE stop
+		MOV r1,r3
+		
+	   ;LDR r2,=0x20000040
+	   ;LDRB r0,[r2],#0x5
+	   ;LSL r1,r0,#1
+	   ;LSL r2,r2,#1
 	   
+stop    B stop ; stop program
      ENDFUNC
      END 
