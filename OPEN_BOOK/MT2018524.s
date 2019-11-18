@@ -1,7 +1,10 @@
 
+;	Open Book Exam
+;MT2018524_Sravanti Nomula     
+;S7--->costheta  s5----->sintheta         
       THUMB
-	    AREA     first, CODE, READONLY
-	    IMPORT printMsg
+      AREA     first, CODE, READONLY
+      IMPORT printMsg
       EXPORT __main
       ENTRY 
 __main  FUNCTION	
@@ -11,36 +14,40 @@ __main  FUNCTION
       
        VLDR.F32 s31, =10
        VLDR.F32 s30, =180	   
-	   VLDR.F32 s21, =-180
+       VLDR.F32 s21, =-180
+       
 loop1  BL sinecosine
        VADD.F32 s21,s21,s31
 
-; store radius in 29
-	   VLDR.F32 s29, =100
 
-;x=r * costheta
-       VMUL.F32 s28,s29,s7
+       VLDR.F32 s29, =100  	;Radius of the circle
 
-;y = r * sintheta
-       VMUL.F32 s29,s29,s5
 
-;change origin (0.0) to (239,319)
+       VMUL.F32 s28,s29,s7       ;x=r * costheta
+
+
+       VMUL.F32 s29,s29,s5	 ;y = r * sintheta
+
+;change origin (0.0) to (239,319) for VGA
 
        VLDR.F32 s27, =239
        VLDR.F32 s26, =319
-	   
+       
+;Generalized circle : x= a+r*costheta	y=b+r*sintheta  
+
+;(a,b) is centre r is radius
+
       VADD.F32 s28,s28,s27
       VADD.F32 s29,s29,s26
 
 
-;       VCVT.U32.F32 s28,s28
-       VCVT.U32.F32 s29,s29
 
-;       VMOV.F32 R0,S28	
-	   VMOV.F32 R0,S29
+       VCVT.U32.F32 s29,s29
+       VMOV.F32 R0,S29
+     
        BL printMsg	 
    
-       VCMP.F32 s21,s30
+       VCMP.F32 s21,s30  
 	   vmrs APSR_nzcv,FPSCR
 	   BLE loop1
 
