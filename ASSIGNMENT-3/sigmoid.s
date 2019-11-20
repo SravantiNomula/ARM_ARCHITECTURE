@@ -1,4 +1,4 @@
- AREA    sigmoid,CODE,READONLY
+     AREA    sigmoid,CODE,READONLY
      IMPORT printSigmoid
      EXPORT __main
      ENTRY 
