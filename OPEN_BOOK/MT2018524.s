@@ -1,10 +1,12 @@
 
-;	Open Book Exam
-;MT2018524_Sravanti Nomula     
-;S7--->costheta  s5----->sintheta         
+;EXAM
+;MT2018524
+;SRAVANTI NOMULA
+      
       THUMB
       AREA     first, CODE, READONLY
-      IMPORT printMsg
+      IMPORT printMsg1
+      IMPORT printMsg2
       EXPORT __main
       ENTRY 
 __main  FUNCTION	
@@ -20,7 +22,7 @@ loop1  BL sinecosine
        VADD.F32 s21,s21,s31
 
 
-       VLDR.F32 s29, =100  	;Radius of the circle
+       VLDR.F32 s29, =54 	;Radius of the circle
 
 
        VMUL.F32 s28,s29,s7       ;x=r * costheta
@@ -42,10 +44,23 @@ loop1  BL sinecosine
 
 
 
-       VCVT.U32.F32 s29,s29
-       VMOV.F32 R0,S29
+      
      
-       BL printMsg	 
+	  VCVT.U32.F32 s28,s28
+       VMOV.F32 R0,S28
+	  BL printMsg1			;PRINTING the x coordinate	
+	 
+	 VCVT.U32.F32 s29,s29
+       VMOV.F32 R0,S29
+	   
+       BL printMsg2 		;printing the y coordinate
+   
+   
+   
+   
+   
+   
+   
    
        VCMP.F32 s21,s30  
 	   vmrs APSR_nzcv,FPSCR
@@ -72,7 +87,7 @@ sinecosine
 	 
 ;iterations	count i
       VLDR.F32 s2, =1
-	  MOV R1,#0x00000001
+	  MOV R5,#0x00000001
 ;increment i	  
 	  VLDR.F32 s3, =1
 	  MOV R2,#0x00000001
@@ -123,8 +138,8 @@ Loop
       VADD.F32 s7,s7,s6
 
       VADD.F32 s2,s2,s3
-	  ADD R1,R1,R2
-	  CMP R1,R0	
+	  ADD R5,R5,R2
+	  CMP R5,R0	
 	  BLT Loop
       BX lr
 
