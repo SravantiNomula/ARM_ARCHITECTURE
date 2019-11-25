@@ -67,7 +67,7 @@ __sigmoid FUNCTION
 	 PUSH {LR};
 	 VLDR.F32 S8,= 1;			Store #1 for calculations
 	 VADD.F32 S9,S11,S8;		S9 has (e^-x)+1
-	 VDIV.F32 S9,S8,S9;			S9 has 1 / (e^-x)+1		-> 	Value of Y - sigmoid function
+	 VDIV.F32 S9,S8,S9;			S9 has 1 / (e^-x)+1 sigmoid function
 	 POP {LR};	
 	 BX lr;
 	ENDFUNC
@@ -76,7 +76,7 @@ __sigmoid FUNCTION
 __val FUNCTION
 	 PUSH {LR}
 	 BL __exp;					Compute e^-x
-	 BL __sigmoid;				Sigmoid function output in S9
+	 BL __sigmoid;				Sigmoid function output 
 	 
 	 VLDR.F32 S14,= 0.5;		Store 0.5 in S14
 	 VCMP.F32 S9,S14;			Compare current Y and 0.5		
@@ -102,7 +102,7 @@ __and FUNCTION
 	 VMUL.F32 S2,S2,S6;			A3*W3
 	 VADD.F32 S3,S0,S1;			A1*W1 + A2*W2 
 	 VADD.F32 S3,S3,S2;			A1*W1 + A2*W2 + A3*W3 
-	 VADD.F32 S3,S3,S7;			A1*W1 + A2*W2 + A3*W3 + B
+	 VADD.F32 S3,S3,S7;			A1*W1 + A2*W2 + A3*W3 + B     adding the bias 
 	 
 	 VMOV.F32 S10,S3;			S10 has the value of x
 	 BL __val;
@@ -135,7 +135,7 @@ __or FUNCTION
 	 ENDFUNC
 
 ;----------------------------------------------------------------------------------------
-;		logic NOT	We only consider 1st input (in R4) for NOT 
+;		logic NOT	 
 
 __not FUNCTION
 	 PUSH {LR};	 
@@ -170,21 +170,21 @@ __xor FUNCTION
 	 VMOV.F32 S21,S2;			S21 has A3
 	 
 	 BL __not;					Computes not for A
-			;					A' stored in R0
-	 VMOV.F32 S22,R0;			Move the count in R0 to S22 (floating point register)
-     VCVT.F32.S32 S22,S22; 		Convert into signed 32bit number	 
+			;				A' stored in R0
+	 VMOV.F32 S22,R0;			Move the count into floating point register
+     VCVT.F32.S32 S22,S22; 			Convert into signed 32bit number	 
 	 
 	 VMOV.F32 S0,S20;			Move value of A2 to S0			
-	 BL __not;					Computes not for B
-			;					B' stored in R1
+	 BL __not;					Computes B'
+			;				B' stored in R1
 	 VMOV.F32 S23,R0;			Move the count in R1 to S23 (floating point register)
-     VCVT.F32.S32 S23,S23; 		Convert into signed 32bit number
+     VCVT.F32.S32 S23,S23; 			Convert into signed 32bit number
 	 
 	 VMOV.F32 S0,S21;			Move value of A3 to S0	
-	 BL __not;					Computes not for C
-			;					C' stored in R2
-	 VMOV.F32 S24,R0;			Move the count in R2 to S24 (floating point register)
-     VCVT.F32.S32 S24,S24; 		Convert into signed 32bit number
+	 BL __not;				Computes C'
+			;			C' stored in R2
+	 VMOV.F32 S24,R0;			Move the count into (floating point register)
+     VCVT.F32.S32 S24,S24; 			Convert into signed 32bit number
 	 
 ;1)	 A1'*A2*A3'	
 	 VMOV.F32 S0,S22;	
