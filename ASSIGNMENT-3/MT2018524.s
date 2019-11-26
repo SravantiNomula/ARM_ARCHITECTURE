@@ -19,12 +19,12 @@ __main FUNCTION
 	 VMOV.F32 S0,R4;			Move A1 to S0 (floating point register)
      VCVT.F32.S32 S0,S0; 		Convert into signed 32bit number
 
-	 MOV R5,#1;	a2	
+	 MOV R5,#0;	a2	
 	 VMOV.F32 S1,R5;			Move A2 to S1 (floating point register)
      VCVT.F32.S32 S1,S1; 		Convert into signed 32bit number
 	 
 	 
-	 MOV R6,#1;	a3
+	 MOV R6,#0;	a3
 	 VMOV.F32 S2,R6;			Move A3 to S2 (floating point register)
      VCVT.F32.S32 S2,S2; 		Convert into signed 32bit number
 	 
@@ -106,10 +106,10 @@ __val FUNCTION
 
 __and FUNCTION
 	 PUSH {LR};	 
-	 VLDR.F32 S4,= 2;			Weight 1
-	 VLDR.F32 S5,= 2;			Weight 2
-	 VLDR.F32 S6,= 2;			Weight 3
-	 VLDR.F32 S7,= -5;		    Bias
+	 VLDR.F32 S4,= -0.1;			Weight 1
+	 VLDR.F32 S5,= 0.2;			Weight 2
+	 VLDR.F32 S6,= 0.2;			Weight 3
+	 VLDR.F32 S7,= -0.2;		    Bias
 	 
 	 VMUL.F32 S0,S0,S4;			a1*w1
 	 VMUL.F32 S1,S1,S5;			a2*w2
@@ -129,10 +129,10 @@ __and FUNCTION
 
 __or FUNCTION
 	 PUSH {LR};	 
-	 VLDR.F32 S4,= 2;			Weight 1
-	 VLDR.F32 S5,= 2;			Weight 2
-	 VLDR.F32 S6,= 2;			Weight 3
-	 VLDR.F32 S7,= -1;			Bias
+	 VLDR.F32 S4,= -0.1;			Weight 1
+	 VLDR.F32 S5,= 0.7;			Weight 2
+	 VLDR.F32 S6,= 0.7;			Weight 3
+	 VLDR.F32 S7,= -0.1;			Bias
 	 
 	 VMUL.F32 S0,S0,S4;			A1*W1
 	 VMUL.F32 S1,S1,S5;			A2*W2
@@ -151,18 +151,18 @@ __or FUNCTION
 
 __not FUNCTION
 	 PUSH {LR};	 
-	 VLDR.F32 S4,= -2;			Weight 1
-	 ;VLDR.F32 S5,= 1;			Weight 2
-	 ;VLDR.F32 S6,= 1;			Weight 3
-	 VLDR.F32 S7,= 1;			Bias
+	 VLDR.F32 S4,= 0.5;			Weight 1
+	 VLDR.F32 S5,= -0.7;			Weight 2
+	
+	 VLDR.F32 S7,= 0.1;			Bias
 	 
 	 VMUL.F32 S0,S0,S4;			A1*W1
-	 ;VMUL.F32 S1,S1,S5;			A2*W2
-	 ;VMUL.F32 S2,S2,S6;			A3*W3
-	 ;VADD.F32 S3,S0,S1;			A1*W1 + A2*W2 
-	 ;VADD.F32 S3,S3,S2;			A1*W1 + A2*W2 + A3*W3 
-	 ;VADD.F32 S3,S3,S7;			A1*W1 + A2*W2 + A3*W3 + B
-	 VADD.F32 S3,S0,S7;			A1*W1 + B
+	 VMUL.F32 S1,S1,S5;			A2*W2
+	
+	 VADD.F32 S3,S0,S1;			A1*W1 + A2*W2 
+	 
+	 VADD.F32 S3,S3,S7;			A1*W1 + A2*W2  + B
+	
 	 
 	 VMOV.F32 S10,S3;			S10 has the value of x
 	 BL __val;
@@ -267,10 +267,10 @@ __xnor FUNCTION
 
 __nand FUNCTION
 	 PUSH {LR};	 
-	 VLDR.F32 S4,= -2;			Weight 1
-	 VLDR.F32 S5,= -2;			Weight 2
-	 VLDR.F32 S6,= -2;			Weight 3
-	 VLDR.F32 S7,= 5;			Bias
+	 VLDR.F32 S4,= 0.6;			Weight 1
+	 VLDR.F32 S5,= -0.8;			Weight 2
+	 VLDR.F32 S6,= -0.8;			Weight 3
+	 VLDR.F32 S7,= 0.3;			Bias
 	 
 	 VMUL.F32 S0,S0,S4;			A1*W1
 	 VMUL.F32 S1,S1,S5;			A2*W2
@@ -289,10 +289,10 @@ __nand FUNCTION
 
 __nor FUNCTION
 	 PUSH {LR};	 
-	 VLDR.F32 S4,= -10;			Weight 1
-	 VLDR.F32 S5,= -10;			Weight 2
-	 VLDR.F32 S6,= -10;			Weight 3
-	 VLDR.F32 S7,= 5;			Bias
+	 VLDR.F32 S4,= 0.5;			Weight 1
+	 VLDR.F32 S5,= -0.7;			Weight 2
+	 VLDR.F32 S6,= -0.7;			Weight 3
+	 VLDR.F32 S7,= 0.1;			Bias
 	 
 	 VMUL.F32 S0,S0,S4;			A1*W1
 	 VMUL.F32 S1,S1,S5;			A2*W2
