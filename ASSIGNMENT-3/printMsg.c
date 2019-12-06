@@ -1,18 +1,35 @@
 #include "stm32f4xx.h"
 #include <string.h>
-#include<stdio.h>
 
-void printMsginvalid()
+void printwelcome(const int a)
 {
-	char Msg[100];
-	 char *ptr;
-	 sprintf(Msg,"Invalid Operation Type\n");
-	 ptr = Msg ;
-   while(*ptr != '\0'){
-      ITM_SendChar(*ptr);
-      ++ptr;
+char *pointer_1;
+pointer_1="___TRUTH___TABLE__FOR___NN__LOGIC_GATES____";
+	
+	 while(*pointer_1 != '\0'){
+      ITM_SendChar(*pointer_1);
+      ++pointer_1;
    }
+	 return;
 }
+
+void printtitle(const int a)
+{
+char *pointer_1;
+	 
+	 if(a==0){ pointer_1 = "\nAND(a1,a2,a3,y):\n"; }
+	 if(a==1){ pointer_1 = "\nOR(a1,a2,a3,y):\n"; }
+	 if(a==2){ pointer_1 = "\nNOT(a1,a2,a3,y):\n"; }
+	 if(a==5){ pointer_1 = "\nNAND(a1,a2,a3,y):\n"; }
+	 if(a==6){ pointer_1 = "\nNOR(a1,a2,a3,y):\n"; }
+	
+	 while(*pointer_1 != '\0'){
+      ITM_SendChar(*pointer_1);
+      ++pointer_1;
+   }
+	 return;}
+
+
 void printMsg(const int a)
 {
 	 char Msg[100];
@@ -25,19 +42,11 @@ void printMsg(const int a)
    }
 }
 
-void printMsg4p(const int a, const int b, const int c, const int d)
+void printMsg4p(const int a, const int b, const int c, const int d, const int e)
 {
 	 char Msg[100];
 	 char *ptr;
-	 // Printing the message
-	sprintf(Msg,"Truth Table \n X1:  ");
-	 ptr = Msg ;
-   while(*ptr != '\0')
-	 {
-      ITM_SendChar(*ptr);
-      ++ptr;
-   }
-	 //Printing the first parameter
+	
 	 sprintf(Msg, "%x", a);
 	 ptr = Msg ;
    while(*ptr != '\0')
@@ -45,14 +54,7 @@ void printMsg4p(const int a, const int b, const int c, const int d)
       ITM_SendChar(*ptr);
       ++ptr;
    }
-	 // Printing the message
-	 sprintf(Msg,"\t X2: ");
-	 ptr = Msg ;
-   while(*ptr != '\0')
-	 {
-      ITM_SendChar(*ptr);
-      ++ptr;
-   }
+	
 	 sprintf(Msg, "%x", b);
 	 ptr = Msg ;
    while(*ptr != '\0')
@@ -60,14 +62,7 @@ void printMsg4p(const int a, const int b, const int c, const int d)
       ITM_SendChar(*ptr);
       ++ptr;
    }
-	 // Printing the message
-	 sprintf(Msg,"\t X3: ");
-	 ptr = Msg ;
-   while(*ptr != '\0')
-	 {
-      ITM_SendChar(*ptr);
-      ++ptr;
-   }
+	 
 	 sprintf(Msg, "%x", c);
 	 ptr = Msg ;
    while(*ptr != '\0')
@@ -75,15 +70,8 @@ void printMsg4p(const int a, const int b, const int c, const int d)
       ITM_SendChar(*ptr);
       ++ptr;
    }
-	 // Printing the message
-	 sprintf(Msg,"\t OUTPUT: ");
-	 ptr = Msg ;
-   while(*ptr != '\0')
-	 {
-      ITM_SendChar(*ptr);
-      ++ptr;
-   }
-	 sprintf(Msg, "%x", d);
+	 
+	 sprintf(Msg, "%x\n", d);
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
@@ -91,5 +79,5 @@ void printMsg4p(const int a, const int b, const int c, const int d)
       ++ptr;
 	 }
 
-	
+	 
 }
